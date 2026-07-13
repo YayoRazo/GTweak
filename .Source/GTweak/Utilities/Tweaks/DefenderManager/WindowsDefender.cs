@@ -455,7 +455,7 @@ namespace GTweak.Utilities.Tweaks.DefenderManager
         private static void TerminateProcess()
         {
             string[] processes = { "smartscreen", "mpdefendercoreservice", "msmpeng", "securityhealthservice", "securityhealthsystray", "securityhealthui", "wuauserv", "searchui", "sechealthui", "configsecuritypolicy", "runtimebroker", "msedge", "ssoncom", "usocoreworker", "defenderbootstrapper", "sensedlpprocessor", "sensetracer",
-            "dlpuseragent", "lsass", "mpam-d", "mpam-fe", "mpam-fe_bd", "mpas-d", "mpas-fe", "mpas-fe_bd", "mpav-d", "mpav-fe", "mpav-fe_bd", "mpcmdrun", "mpcopyaccelerator", "mpdlpcmd", "mpdlpservice", "mpextms", "mpsigstub", "mrt", "msmpengcp", "mssense", "nissrv", "offlinescannershell", "securekernel", "usocoreworker", "securityhealthhost",
+            "dlpuseragent", "mpam-d", "mpam-fe", "mpam-fe_bd", "mpas-d", "mpas-fe", "mpas-fe_bd", "mpav-d", "mpav-fe", "mpav-fe_bd", "mpcmdrun", "mpcopyaccelerator", "mpdlpcmd", "mpdlpservice", "mpextms", "mpsigstub", "mrt", "msmpengcp", "mssense", "nissrv", "offlinescannershell", "securekernel", "usocoreworker", "securityhealthhost",
             "senseap", "senseaptoast", "sensecm", "sensegpparser", "senseidentity", "senseimdscollector", "senseir", "sensendr", "sensesampleuploader", "sensetvm", "sgrmbroker", "healthattestationclientagent", "wdnissvc", "wdboot", "msseccore", "mssecflt", "mssecwfp", "mdcoresvc", "sensece", "senseui", "sensepp", "wdshield", "mipdlp"  };
             CommandExecutor.RunCommandAsTrustedInstaller($@"""{PathLocator.Executable.NSudo}"" -U:T -P:E -CreatePath:S -ShowWindowMode:Hide -Wait cmd /c taskkill /f " + string.Join(" ", processes.Select(p => $"/im {p}.exe")));
         }
