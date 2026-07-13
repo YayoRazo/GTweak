@@ -153,6 +153,19 @@ namespace GTweak.Utilities.Helpers
             Synchronize = 0x00100000
         }
 
+        private static bool IsProcessRunning(int processId)
+        {
+            try
+            {
+                using Process process = Process.GetProcessById(processId);
+                return !process.HasExited;
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+        }
+
         private static bool ImpersonateSystem()
         {
             IntPtr tokenHandle = IntPtr.Zero;
@@ -267,6 +280,12 @@ namespace GTweak.Utilities.Helpers
                     if (!impersonated)
                     {
                         throw new Win32Exception("Failed to impersonate SYSTEM identity");
+                    }
+
+                    if (!IsProcessRunning(parentProcessId))
+                    {
+                        StartTrustedInstallerService();
+                        parentProcessId = CommandExecutor.PID;
                     }
 
                     attributeList = Marshal.AllocHGlobal((IntPtr)(long)lpSize);
